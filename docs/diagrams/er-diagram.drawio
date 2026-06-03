@@ -1,131 +1,148 @@
-<mxfile host="app.diagrams.net">
-  <diagram name="SOEP ER Diagram">
-    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1"
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-06-03T00:00:00.000Z" agent="ChatGPT" version="24.7.17">
+  <diagram id="SOEP-ERD" name="SOEP ER Diagram">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1"
                   connect="1" arrows="1" fold="1" page="1" pageScale="1"
-                  pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+                  pageWidth="2000" pageHeight="1600" math="0" shadow="0">
       <root>
         <mxCell id="0"/>
         <mxCell id="1" parent="0"/>
 
         <!-- ROLES -->
         <mxCell id="roles"
-                value="ROLES&#10;------------------&#10;PK role_id&#10;role_name"
-                style="rounded=0;whiteSpace=wrap;html=1;"
-                vertex="1" parent="1">
-          <mxGeometry x="50" y="50" width="180" height="120" as="geometry"/>
+          value="ROLES&#10;------------------&#10;PK role_id&#10;role_name"
+          style="shape=rectangle;whiteSpace=wrap;html=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="40" y="50" width="220" height="120" as="geometry"/>
         </mxCell>
 
         <!-- USERS -->
         <mxCell id="users"
-                value="USERS&#10;------------------&#10;PK user_id&#10;first_name&#10;last_name&#10;email&#10;password_hash&#10;role_id FK&#10;is_active"
-                style="rounded=0;whiteSpace=wrap;html=1;"
-                vertex="1" parent="1">
-          <mxGeometry x="320" y="30" width="220" height="220" as="geometry"/>
+          value="USERS&#10;------------------&#10;PK user_id&#10;first_name&#10;last_name&#10;email&#10;password_hash&#10;role_id FK&#10;is_active&#10;created_at&#10;updated_at"
+          style="shape=rectangle;whiteSpace=wrap;html=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="350" y="30" width="260" height="260" as="geometry"/>
         </mxCell>
 
         <!-- EXAMS -->
         <mxCell id="exams"
-                value="EXAMS&#10;------------------&#10;PK exam_id&#10;title&#10;duration_minutes&#10;passing_score&#10;created_by FK"
-                style="rounded=0;whiteSpace=wrap;html=1;"
-                vertex="1" parent="1">
-          <mxGeometry x="650" y="30" width="220" height="180" as="geometry"/>
+          value="EXAMS&#10;------------------&#10;PK exam_id&#10;title&#10;description&#10;duration_minutes&#10;passing_score&#10;created_by FK&#10;created_at&#10;updated_at"
+          style="shape=rectangle;whiteSpace=wrap;html=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="700" y="20" width="280" height="250" as="geometry"/>
         </mxCell>
 
         <!-- QUESTIONS -->
         <mxCell id="questions"
-                value="QUESTIONS&#10;------------------&#10;PK question_id&#10;exam_id FK&#10;question_type&#10;difficulty_level&#10;marks&#10;negative_marks"
-                style="rounded=0;whiteSpace=wrap;html=1;"
-                vertex="1" parent="1">
-          <mxGeometry x="980" y="30" width="240" height="200" as="geometry"/>
+          value="QUESTIONS&#10;------------------&#10;PK question_id&#10;exam_id FK&#10;question_text&#10;question_type&#10;difficulty_level&#10;marks&#10;negative_marks&#10;created_at&#10;updated_at"
+          style="shape=rectangle;whiteSpace=wrap;html=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="1080" y="20" width="300" height="290" as="geometry"/>
         </mxCell>
 
         <!-- OPTIONS -->
         <mxCell id="options"
-                value="OPTIONS&#10;------------------&#10;PK option_id&#10;question_id FK&#10;option_text&#10;is_correct"
-                style="rounded=0;whiteSpace=wrap;html=1;"
-                vertex="1" parent="1">
-          <mxGeometry x="1320" y="50" width="220" height="150" as="geometry"/>
+          value="OPTIONS&#10;------------------&#10;PK option_id&#10;question_id FK&#10;option_text&#10;is_correct&#10;created_at&#10;updated_at"
+          style="shape=rectangle;whiteSpace=wrap;html=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="1480" y="50" width="260" height="220" as="geometry"/>
         </mxCell>
 
         <!-- EXAM_ASSIGNMENTS -->
         <mxCell id="assignments"
-                value="EXAM_ASSIGNMENTS&#10;------------------&#10;PK assignment_id&#10;exam_id FK&#10;candidate_id FK&#10;status"
-                style="rounded=0;whiteSpace=wrap;html=1;"
-                vertex="1" parent="1">
-          <mxGeometry x="650" y="350" width="260" height="180" as="geometry"/>
+          value="EXAM_ASSIGNMENTS&#10;------------------&#10;PK assignment_id&#10;exam_id FK&#10;candidate_id FK&#10;assigned_at&#10;started_at&#10;submitted_at&#10;status&#10;created_at&#10;updated_at"
+          style="shape=rectangle;whiteSpace=wrap;html=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="700" y="500" width="320" height="290" as="geometry"/>
         </mxCell>
 
         <!-- CANDIDATE_ANSWERS -->
         <mxCell id="answers"
-                value="CANDIDATE_ANSWERS&#10;------------------&#10;PK answer_id&#10;assignment_id FK&#10;question_id FK&#10;option_id FK"
-                style="rounded=0;whiteSpace=wrap;html=1;"
-                vertex="1" parent="1">
-          <mxGeometry x="980" y="350" width="260" height="180" as="geometry"/>
+          value="CANDIDATE_ANSWERS&#10;------------------&#10;PK answer_id&#10;assignment_id FK&#10;question_id FK&#10;option_id FK&#10;answered_at"
+          style="shape=rectangle;whiteSpace=wrap;html=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="1120" y="520" width="300" height="220" as="geometry"/>
         </mxCell>
 
         <!-- RESULTS -->
         <mxCell id="results"
-                value="RESULTS&#10;------------------&#10;PK result_id&#10;assignment_id FK&#10;score&#10;percentage&#10;status"
-                style="rounded=0;whiteSpace=wrap;html=1;"
-                vertex="1" parent="1">
-          <mxGeometry x="1320" y="350" width="220" height="170" as="geometry"/>
+          value="RESULTS&#10;------------------&#10;PK result_id&#10;assignment_id FK&#10;score&#10;percentage&#10;status&#10;generated_at"
+          style="shape=rectangle;whiteSpace=wrap;html=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="1520" y="520" width="260" height="220" as="geometry"/>
         </mxCell>
 
         <!-- AUDIT_LOGS -->
         <mxCell id="audit"
-                value="AUDIT_LOGS&#10;------------------&#10;PK log_id&#10;user_id FK&#10;action&#10;entity_type"
-                style="rounded=0;whiteSpace=wrap;html=1;"
-                vertex="1" parent="1">
-          <mxGeometry x="320" y="380" width="220" height="170" as="geometry"/>
+          value="AUDIT_LOGS&#10;------------------&#10;PK log_id&#10;user_id FK&#10;action&#10;entity_type&#10;entity_id&#10;ip_address&#10;created_at"
+          style="shape=rectangle;whiteSpace=wrap;html=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="350" y="520" width="260" height="240" as="geometry"/>
         </mxCell>
 
-        <!-- Relationships -->
+        <!-- RELATIONSHIPS -->
 
-        <mxCell id="r1" style="endArrow=block;" edge="1" parent="1"
-                source="roles" target="users">
-          <mxGeometry relative="1" as="geometry"/>
-        </mxCell>
+         <!-- RELATIONSHIPS -->
 
-        <mxCell id="r2" style="endArrow=block;" edge="1" parent="1"
-                source="users" target="exams">
-          <mxGeometry relative="1" as="geometry"/>
-        </mxCell>
+<mxCell id="r1" value="1..N" edge="1" parent="1"
+ source="roles" target="users"
+ style="endArrow=block;html=1;">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
 
-        <mxCell id="r3" style="endArrow=block;" edge="1" parent="1"
-                source="exams" target="questions">
-          <mxGeometry relative="1" as="geometry"/>
-        </mxCell>
+<mxCell id="r2" value="1..N" edge="1" parent="1"
+ source="users" target="exams"
+ style="endArrow=block;html=1;">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
 
-        <mxCell id="r4" style="endArrow=block;" edge="1" parent="1"
-                source="questions" target="options">
-          <mxGeometry relative="1" as="geometry"/>
-        </mxCell>
+<mxCell id="r3" value="1..N" edge="1" parent="1"
+ source="exams" target="questions"
+ style="endArrow=block;html=1;">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
 
-        <mxCell id="r5" style="endArrow=block;" edge="1" parent="1"
-                source="users" target="assignments">
-          <mxGeometry relative="1" as="geometry"/>
-        </mxCell>
+<mxCell id="r4" value="1..N" edge="1" parent="1"
+ source="questions" target="options"
+ style="endArrow=block;html=1;">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
 
-        <mxCell id="r6" style="endArrow=block;" edge="1" parent="1"
-                source="exams" target="assignments">
-          <mxGeometry relative="1" as="geometry"/>
-        </mxCell>
+<mxCell id="r5" value="1..N" edge="1" parent="1"
+ source="users" target="assignments"
+ style="endArrow=block;html=1;">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
 
-        <mxCell id="r7" style="endArrow=block;" edge="1" parent="1"
-                source="assignments" target="answers">
-          <mxGeometry relative="1" as="geometry"/>
-        </mxCell>
+<mxCell id="r6" value="1..N" edge="1" parent="1"
+ source="exams" target="assignments"
+ style="endArrow=block;html=1;">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
 
-        <mxCell id="r8" style="endArrow=block;" edge="1" parent="1"
-                source="assignments" target="results">
-          <mxGeometry relative="1" as="geometry"/>
-        </mxCell>
+<mxCell id="r7" value="1..N" edge="1" parent="1"
+ source="assignments" target="answers"
+ style="endArrow=block;html=1;">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
 
-        <mxCell id="r9" style="endArrow=block;" edge="1" parent="1"
-                source="users" target="audit">
-          <mxGeometry relative="1" as="geometry"/>
-        </mxCell>
+<mxCell id="r8" value="1..1" edge="1" parent="1"
+ source="assignments" target="results"
+ style="endArrow=block;html=1;">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
 
+<mxCell id="r9" value="1..N" edge="1" parent="1"
+ source="users" target="audit"
+ style="endArrow=block;html=1;">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
+
+<mxCell id="r10" value="1..N" edge="1" parent="1"
+ source="questions" target="answers"
+ style="endArrow=block;html=1;">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
       </root>
     </mxGraphModel>
   </diagram>
