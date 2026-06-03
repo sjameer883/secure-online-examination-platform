@@ -1,6 +1,6 @@
 # Software Requirements Specification (SRS)
 
-# Online Test Platform (OTP)
+# Secure Online Examination Platform (SOEP)
 
 Version: 1.0
 Prepared By: Shaik Zameer
@@ -11,27 +11,52 @@ Prepared By: Shaik Zameer
 
 ## 1.1 Purpose
 
-The Online Test Platform (OTP) is a web-based application that enables administrators to create and manage examinations while allowing students to take tests online securely. The platform automates exam scheduling, question management, test evaluation, and result generation.
+The Secure Online Examination Platform (SOEP) is a web-based application that enables organizations to create, manage, and conduct secure online examinations. Recruiters can assign examinations to candidates, monitor assessments, evaluate results, and streamline the candidate screening process. Candidates can participate in assigned examinations through a secure and controlled environment.
+
+---
 
 ## 1.2 Scope
 
-The system provides:
+The platform provides:
 
-* User registration and authentication
-* Role-based access (Admin, Student)
-* Question bank management
-* Test creation and scheduling
-* Online examination interface
-* Automatic evaluation
-* Result generation and reporting
-* Secure exam environment
+* User Registration and Authentication
+* Role-Based Access Control
+* Recruiter Management
+* Candidate Management
+* Question Bank Management
+* Examination Creation and Scheduling
+* Candidate Exam Assignment
+* Online Examination Interface
+* Automated Evaluation
+* Result Generation
+* Audit Logging
+* Secure Assessment Environment
+
+---
 
 ## 1.3 Intended Users
 
-* Administrators
-* Students
-* Educational Institutions
-* Training Organizations
+### Organizations
+
+* IT Companies
+* Product-Based Companies
+* Startups
+* Consulting Firms
+* Recruitment Agencies
+
+### Platform Users
+
+#### Admin
+
+Responsible for platform administration and user management.
+
+#### Recruiter
+
+Responsible for creating examinations, managing candidates, and evaluating results.
+
+#### Candidate
+
+Responsible for attending assigned examinations and viewing results.
 
 ---
 
@@ -39,41 +64,51 @@ The system provides:
 
 ## 2.1 Product Perspective
 
-The Online Test Platform is a standalone web application accessible through modern web browsers.
+SOEP is a cloud-ready web application that allows organizations to conduct secure online examinations for candidate assessment and recruitment processes.
+
+---
 
 ## 2.2 User Roles
 
 ### Admin
 
-* Manage users
-* Create tests
-* Manage questions
-* View reports
-* Publish results
+* Manage Recruiters
+* Manage Candidates
+* Manage System Configuration
+* Monitor Platform Activities
+* View Audit Logs
 
-### Student
+### Recruiter
 
-* Register/Login
-* View available tests
-* Take exams
-* View results
+* Create Examinations
+* Manage Question Banks
+* Assign Exams to Candidates
+* Monitor Examination Progress
+* Evaluate Results
+
+### Candidate
+
+* Login
+* View Assigned Exams
+* Attend Examinations
+* Review Submission Status
+* View Results
 
 ---
 
 # 3. Functional Requirements
 
-## FR-1 User Authentication
-
-### Description
-
-Users must be able to register and login securely.
+## FR-1 Authentication & Authorization
 
 ### Features
 
-* Registration
+* User Registration
 * Login
 * Logout
 * Password Reset
+* JWT Authentication
+* Refresh Token Support
+* Role-Based Access Control
 
 ---
 
@@ -81,58 +116,67 @@ Users must be able to register and login securely.
 
 ### Admin Features
 
-* Add Student
-* Edit Student
-* Delete Student
-* Activate/Deactivate Accounts
+* Manage Recruiters
+* Manage Candidates
+* Activate Accounts
+* Deactivate Accounts
+* Reset User Credentials
 
 ---
 
 ## FR-3 Question Bank Management
 
-### Admin Features
+### Recruiter Features
 
 * Create Questions
-* Update Questions
+* Edit Questions
 * Delete Questions
-* Categorize Questions by Subject
-* Import Questions via Excel/CSV
+* Categorize Questions
+* Import Questions
 
-### Question Types
+### Supported Question Types
 
-* Multiple Choice Questions (MCQ)
-* True/False
-* Fill in the Blanks
+#### Single Correct Answer
+
+Candidate selects one correct option.
+
+#### Multiple Correct Answers
+
+Candidate selects multiple correct options.
 
 ---
 
-## FR-4 Test Management
+## FR-4 Examination Management
 
-### Admin Features
+### Recruiter Features
 
-* Create Test
-* Edit Test
-* Delete Test
-* Set Duration
-* Set Passing Marks
-* Schedule Test Date & Time
+* Create Examination
+* Edit Examination
+* Delete Examination
+* Configure Duration
+* Configure Passing Marks
+* Schedule Examination
+* Assign Examination to Candidate
+* Publish Examination
 
 ---
 
 ## FR-5 Examination Module
 
-### Student Features
+### Candidate Features
 
-* Start Test
-* Answer Questions
+* Start Examination
+* Save Progress
 * Navigate Between Questions
-* Submit Test
+* Review Questions
+* Submit Examination
 
 ### System Features
 
-* Auto Save Answers
-* Timer Countdown
+* Auto Save Responses
+* Countdown Timer
 * Auto Submit on Timeout
+* Response Tracking
 
 ---
 
@@ -140,41 +184,38 @@ Users must be able to register and login securely.
 
 ### System Features
 
-* Automatic Scoring
-* Calculate Total Marks
-* Generate Percentage
-* Determine Pass/Fail Status
+* Automatic Evaluation
+* Score Calculation
+* Percentage Calculation
+* Pass/Fail Determination
+* Result Generation
 
 ---
 
 ## FR-7 Results Module
 
-### Student Features
+### Candidate Features
 
 * View Results
-* Download Score Report
+* View Examination History
 
-### Admin Features
+### Recruiter Features
 
-* View All Results
+* View Candidate Results
 * Export Results
+* Candidate Performance Analysis
 
 ---
 
-## FR-8 Dashboard
+## FR-8 Audit Logging
 
-### Admin Dashboard
+### System Features
 
-* Total Students
-* Total Tests
-* Average Scores
-* Recent Activity
-
-### Student Dashboard
-
-* Upcoming Tests
-* Completed Tests
-* Latest Results
+* User Login Tracking
+* User Activity Tracking
+* Examination Activity Tracking
+* Security Event Logging
+* Administrative Action Logging
 
 ---
 
@@ -182,70 +223,149 @@ Users must be able to register and login securely.
 
 ## Performance
 
-* Support 100+ concurrent users
-* Response time less than 3 seconds
+* Support 1,000+ Concurrent Users
+* Response Time Less Than 3 Seconds
+* Auto Save Response Time Less Than 1 Second
+
+---
 
 ## Security
 
-* Password Encryption
+* BCrypt Password Encryption
 * JWT Authentication
+* Refresh Token Support
+* HTTPS Communication
 * Role-Based Access Control
+* Audit Logging
 * Secure Session Management
+
+---
 
 ## Reliability
 
-* 99% Availability
-* Automatic Backup
+* 99.9% Availability
+* Automated Backup Mechanism
 
-## Usability
-
-* Responsive Design
-* Mobile Friendly Interface
+---
 
 ## Scalability
 
-* Support future growth up to 10,000 users
+* Cloud Deployment Ready
+* Horizontal Scaling Support
+
+---
+
+## Usability
+
+* Responsive User Interface
+* Mobile-Friendly Design
+* Cross-Browser Compatibility
 
 ---
 
 # 5. Database Requirements
 
-## Users
+## roles
 
-* UserID
-* Name
-* Email
-* Password
-* Role
+* role_id
+* role_name
 
-## Tests
+### Sample Values
 
-* TestID
-* TestName
-* Duration
-* TotalMarks
-* StartTime
-* EndTime
+* ADMIN
+* RECRUITER
+* CANDIDATE
 
-## Questions
+---
 
-* QuestionID
-* TestID
-* QuestionText
-* OptionA
-* OptionB
-* OptionC
-* OptionD
-* CorrectAnswer
+## users
 
-## Results
+* user_id
+* first_name
+* last_name
+* email
+* password_hash
+* role_id
+* is_active
+* created_at
+* updated_at
 
-* ResultID
-* UserID
-* TestID
-* Score
-* Percentage
-* Status
+---
+
+## exams
+
+* exam_id
+* title
+* description
+* duration_minutes
+* passing_score
+* start_time
+* end_time
+* created_by
+* created_at
+
+---
+
+## questions
+
+* question_id
+* exam_id
+* question_text
+* question_type
+* marks
+* created_at
+
+---
+
+## options
+
+* option_id
+* question_id
+* option_text
+* is_correct
+
+---
+
+## exam_assignments
+
+* assignment_id
+* exam_id
+* candidate_id
+* assigned_at
+* status
+
+---
+
+## candidate_answers
+
+* answer_id
+* assignment_id
+* question_id
+* selected_option_id
+* answered_at
+
+---
+
+## results
+
+* result_id
+* assignment_id
+* score
+* percentage
+* status
+* submitted_at
+
+---
+
+## audit_logs
+
+* log_id
+* user_id
+* action
+* entity_type
+* entity_id
+* ip_address
+* timestamp
 
 ---
 
@@ -254,24 +374,29 @@ Users must be able to register and login securely.
 ## Frontend
 
 * React.js
-* HTML5
-* CSS3
-* Bootstrap
+* TypeScript
+* Tailwind CSS
 
 ## Backend
 
-* Spring Boot
 * Java 21
-* REST APIs
+* Spring Boot
+* Spring Security
+* Spring Data JPA
+* Hibernate
 
 ## Database
 
-* MySQL
+* PostgreSQL
 
-## Security
+## Build Tool
 
-* Spring Security
+* Maven
+
+## Authentication
+
 * JWT
+* Refresh Tokens
 
 ## Version Control
 
@@ -282,18 +407,22 @@ Users must be able to register and login securely.
 
 # 7. Future Enhancements
 
+* Coding Assessments
+* Online Code Execution Sandbox
 * AI-Based Proctoring
 * Webcam Monitoring
-* Face Recognition
-* Certificate Generation
-* Email Notifications
-* Multi-Language Support
+* Face Verification
+* Interview Scheduling
+* Live Interview Platform
+* Multi-Tenant Organizations
+* Advanced Analytics Dashboard
 
 ---
 
 # 8. Success Criteria
 
-* Students can complete exams online successfully.
-* Admin can manage tests efficiently.
-* Results are generated automatically.
-* System remains secure and scalable.
+* Recruiters can create and assign examinations efficiently.
+* Candidates can complete examinations securely.
+* Results are generated automatically and accurately.
+* User activities are fully auditable.
+* The platform remains secure, scalable, and reliable under load.
