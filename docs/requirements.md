@@ -1,9 +1,9 @@
 # Software Requirements Specification (SRS)
 
-# Online Test & Recruitment Platform (OTRP)
+# Online Test Platform (OTP)
 
-Version: 2.0
-Prepared By: Shaik Meetaigar Jameer Basha
+Version: 1.0
+Prepared By: Shaik Zameer
 
 ---
 
@@ -11,59 +11,27 @@ Prepared By: Shaik Meetaigar Jameer Basha
 
 ## 1.1 Purpose
 
-The Online Test & Recruitment Platform (OTRP) is a secure web-based system that enables educational institutions, training organizations, and companies to conduct assessments, coding tests, communication evaluations, aptitude tests, and online interviews. The platform streamlines the complete recruitment and assessment lifecycle from candidate registration to final selection.
-
----
+The Online Test Platform (OTP) is a web-based application that enables administrators to create and manage examinations while allowing students to take tests online securely. The platform automates exam scheduling, question management, test evaluation, and result generation.
 
 ## 1.2 Scope
 
-The platform provides:
+The system provides:
 
-* User Registration and Authentication
-* Role-Based Access Control
-* Assessment Management
-* Question Bank Management
-* Coding Assessment Environment
-* Technical Skill Evaluation
-* Communication Skill Evaluation
-* Aptitude & Logical Reasoning Tests
-* Automated Evaluation & Scoring
-* Interview Scheduling
-* Secure Online Interview Environment
-* Candidate Analytics & Reporting
-* Recruitment Workflow Management
-
----
+* User registration and authentication
+* Role-based access (Admin, Student)
+* Question bank management
+* Test creation and scheduling
+* Online examination interface
+* Automatic evaluation
+* Result generation and reporting
+* Secure exam environment
 
 ## 1.3 Intended Users
 
-### Educational Institutions
-
-* Schools
-* Colleges
-* Universities
-* Online Learning Platforms
-
-### Hiring Industries & Companies
-
-* IT Companies
-* Product-Based Companies
-* Startups
-* Consulting Firms
-* BPO/KPO Organizations
-* Corporate Training Departments
-* Recruitment Agencies
-
-### Training Organizations
-
-* Technical Training Institutes
-* Certification Providers
-* Skill Development Centers
-
-### Government Organizations
-
-* Recruitment Boards
-* Public Sector Enterprises
+* Administrators
+* Students
+* Educational Institutions
+* Training Organizations
 
 ---
 
@@ -71,305 +39,142 @@ The platform provides:
 
 ## 2.1 Product Perspective
 
-The platform is a cloud-based web application accessible through desktop and mobile browsers. It supports online assessments, coding challenges, and interview management.
-
----
+The Online Test Platform is a standalone web application accessible through modern web browsers.
 
 ## 2.2 User Roles
 
-### Super Admin
+### Admin
 
-* Manage Organizations
-* Manage System Configuration
-* Monitor Platform Usage
-* Manage Subscription Plans
-* View Global Analytics
+* Manage users
+* Create tests
+* Manage questions
+* View reports
+* Publish results
 
-### Recruiter/Admin
-
-* Create Assessments
-* Manage Candidates
-* Schedule Interviews
-* View Reports
-* Publish Results
-
-### Interviewer
-
-* Conduct Interviews
-* Evaluate Candidates
-* Submit Feedback
-* Access Assigned Assessments
-
-### Candidate
+### Student
 
 * Register/Login
-* Take Assessments
-* Attend Interviews
-* View Results
-* Track Application Status
+* View available tests
+* Take exams
+* View results
 
 ---
 
 # 3. Functional Requirements
 
-## FR-1 User Authentication & Authorization
+## FR-1 User Authentication
+
+### Description
+
+Users must be able to register and login securely.
 
 ### Features
 
-* User Registration
-* Secure Login
+* Registration
+* Login
 * Logout
 * Password Reset
-* Email Verification
-* Multi-Factor Authentication (Optional)
-* JWT-Based Authentication
-* Role-Based Access Control
 
 ---
 
-## FR-2 Organization Management
+## FR-2 User Management
 
-### Features
+### Admin Features
 
-* Organization Registration
-* Organization Profile Management
-* Recruiter Management
-* Department Management
-* Subscription Management
-
----
-
-## FR-3 Candidate Management
-
-### Features
-
-* Candidate Registration
-* Profile Creation
-* Resume Upload
-* Skills Management
-* Experience Management
-* Application Tracking
+* Add Student
+* Edit Student
+* Delete Student
+* Activate/Deactivate Accounts
 
 ---
 
-## FR-4 Question Bank Management
+## FR-3 Question Bank Management
 
-### Features
+### Admin Features
 
 * Create Questions
-* Edit Questions
+* Update Questions
 * Delete Questions
-* Import Questions
-* Export Questions
-* Categorize Questions
-* Difficulty Levels
+* Categorize Questions by Subject
+* Import Questions via Excel/CSV
 
 ### Question Types
 
-#### Technical Questions
-
-* MCQ
-* Coding Challenges
-* SQL Queries
-* Debugging Problems
-* System Design Questions
-
-#### Aptitude Questions
-
-* Quantitative Aptitude
-* Logical Reasoning
-* Analytical Reasoning
-
-#### Communication Questions
-
-* English Grammar
-* Reading Comprehension
-* Verbal Ability
-* Writing Skills
-
-#### Domain-Specific Questions
-
-* Java
-* Spring Boot
-* Python
-* JavaScript
-* React
-* SQL
-* DevOps
-* Cloud Computing
-* Cybersecurity
-* AI/ML
+* Multiple Choice Questions (MCQ)
+* True/False
+* Fill in the Blanks
 
 ---
 
-## FR-5 Assessment Management
+## FR-4 Test Management
 
-### Features
+### Admin Features
 
-* Create Assessment
-* Schedule Assessment
-* Configure Duration
-* Configure Passing Score
-* Randomize Questions
-* Assign Candidates
-* Enable Proctoring Rules
-* Publish Assessment
-
-### Assessment Types
-
-* Technical Assessment
-* Coding Assessment
-* Aptitude Test
-* Communication Assessment
-* Domain Skill Assessment
-* Hybrid Assessment
+* Create Test
+* Edit Test
+* Delete Test
+* Set Duration
+* Set Passing Marks
+* Schedule Test Date & Time
 
 ---
 
-## FR-6 Coding Test Environment
+## FR-5 Examination Module
 
-### Features
-
-* Browser-Based Code Editor
-* Syntax Highlighting
-* Auto Save
-* Code Compilation
-* Code Execution
-* Hidden Test Cases
-* Custom Test Cases
-* Runtime Validation
-* Memory Usage Validation
-* Submission Tracking
-
-### Supported Languages
-
-* Java
-* Python
-* JavaScript
-* C
-* C++
-* SQL
-
----
-
-## FR-7 Online Examination Module
-
-### Features
+### Student Features
 
 * Start Test
-* Save Answers
-* Review Answers
+* Answer Questions
+* Navigate Between Questions
 * Submit Test
+
+### System Features
+
+* Auto Save Answers
 * Timer Countdown
-* Auto Submission
-* Question Navigation
-* Progress Tracking
+* Auto Submit on Timeout
 
 ---
 
-## FR-8 Evaluation Engine
+## FR-6 Evaluation Module
 
-### Features
+### System Features
 
-* Automatic MCQ Evaluation
-* Coding Evaluation
-* Score Calculation
-* Percentage Calculation
-* Ranking Generation
-* Pass/Fail Determination
+* Automatic Scoring
+* Calculate Total Marks
+* Generate Percentage
+* Determine Pass/Fail Status
 
 ---
 
-## FR-9 Interview Scheduling Module
+## FR-7 Results Module
 
-### Features
-
-* Schedule Interview
-* Assign Interviewer
-* Calendar Integration
-* Email Notifications
-* SMS Notifications
-* Reschedule Interview
-* Cancel Interview
-
----
-
-## FR-10 Secure Interview Environment
-
-### Features
-
-* Video Interview Room
-* Live Coding Environment
-* Whiteboard Collaboration
-* Screen Sharing
-* Candidate Verification
-* Interview Recording
-* Chat Support
-* Feedback Submission
-
----
-
-## FR-11 Proctoring & Security Module
-
-### Features
-
-* Browser Tab Monitoring
-* Full-Screen Enforcement
-* Webcam Monitoring
-* Face Verification
-* Multiple Login Detection
-* Activity Tracking
-* Session Recording
-* Suspicious Activity Alerts
-
----
-
-## FR-12 Results & Analytics
-
-### Candidate Features
+### Student Features
 
 * View Results
-* Download Reports
-* View Performance Insights
+* Download Score Report
 
-### Recruiter Features
+### Admin Features
 
-* Candidate Ranking
-* Assessment Analytics
-* Hiring Reports
-* Interview Feedback Reports
+* View All Results
+* Export Results
 
 ---
 
-## FR-13 Recruitment Workflow Management
+## FR-8 Dashboard
 
-### Recruitment Flow
+### Admin Dashboard
 
-1. Candidate Registration
-2. Resume Submission
-3. Assessment Assignment
-4. Online Test Completion
-5. Automated Evaluation
-6. Candidate Shortlisting
-7. Interview Scheduling
-8. Technical Interview
-9. HR Interview
-10. Final Evaluation
-11. Offer Release
-12. Candidate Onboarding
+* Total Students
+* Total Tests
+* Average Scores
+* Recent Activity
 
----
+### Student Dashboard
 
-## FR-14 Notification Module
-
-### Features
-
-* Email Notifications
-* SMS Notifications
-* Interview Reminders
-* Assessment Reminders
-* Result Notifications
-* Recruitment Status Updates
+* Upcoming Tests
+* Completed Tests
+* Latest Results
 
 ---
 
@@ -377,36 +182,29 @@ The platform is a cloud-based web application accessible through desktop and mob
 
 ## Performance
 
-* Support 1,000+ Concurrent Users
-* Response Time < 3 Seconds
-* Assessment Auto Save < 1 Second
+* Support 100+ concurrent users
+* Response time less than 3 seconds
 
 ## Security
 
-* JWT Authentication
 * Password Encryption
-* HTTPS Communication
+* JWT Authentication
 * Role-Based Access Control
-* Secure Coding Sandbox
-* Data Encryption
+* Secure Session Management
 
 ## Reliability
 
-* 99.9% Availability
+* 99% Availability
 * Automatic Backup
-* Disaster Recovery Support
-
-## Scalability
-
-* Multi-Tenant Architecture
-* Horizontal Scaling Support
-* Cloud Deployment Ready
 
 ## Usability
 
-* Responsive UI
-* Mobile-Friendly Design
-* Accessibility Compliance
+* Responsive Design
+* Mobile Friendly Interface
+
+## Scalability
+
+* Support future growth up to 10,000 users
 
 ---
 
@@ -419,60 +217,34 @@ The platform is a cloud-based web application accessible through desktop and mob
 * Email
 * Password
 * Role
-* Status
 
-## Organizations
+## Tests
 
-* OrganizationID
-* OrganizationName
-* SubscriptionType
-
-## Candidates
-
-* CandidateID
-* UserID
-* ResumeURL
-* Experience
-* Skills
-
-## Assessments
-
-* AssessmentID
-* AssessmentName
+* TestID
+* TestName
 * Duration
-* PassingScore
+* TotalMarks
+* StartTime
+* EndTime
 
 ## Questions
 
 * QuestionID
-* AssessmentID
-* QuestionType
-* DifficultyLevel
-
-## CodingSubmissions
-
-* SubmissionID
-* CandidateID
-* SourceCode
-* Language
-* ExecutionResult
-
-## Interviews
-
-* InterviewID
-* CandidateID
-* InterviewerID
-* ScheduleTime
-* Status
+* TestID
+* QuestionText
+* OptionA
+* OptionB
+* OptionC
+* OptionD
+* CorrectAnswer
 
 ## Results
 
 * ResultID
-* CandidateID
-* AssessmentID
+* UserID
+* TestID
 * Score
 * Percentage
-* Rank
 * Status
 
 ---
@@ -482,32 +254,24 @@ The platform is a cloud-based web application accessible through desktop and mob
 ## Frontend
 
 * React.js
-* TypeScript
 * HTML5
 * CSS3
-* Bootstrap / Material UI
+* Bootstrap
 
 ## Backend
 
-* Java 21
 * Spring Boot
-* Spring Security
-* Spring Data JPA
+* Java 21
+* REST APIs
 
 ## Database
 
-* PostgreSQL
+* MySQL
 
-## Authentication
+## Security
 
+* Spring Security
 * JWT
-* OAuth 2.0
-
-## Cloud & DevOps
-
-* Docker
-* Kubernetes
-* AWS / Azure
 
 ## Version Control
 
@@ -518,26 +282,18 @@ The platform is a cloud-based web application accessible through desktop and mob
 
 # 7. Future Enhancements
 
-* AI-Based Candidate Evaluation
-* AI Interview Assistant
-* Voice Analysis
-* Emotion Detection
-* Resume Screening using AI
+* AI-Based Proctoring
+* Webcam Monitoring
+* Face Recognition
 * Certificate Generation
+* Email Notifications
 * Multi-Language Support
-* Mobile Application
-* Integration with Job Portals
-* ATS (Applicant Tracking System) Integration
 
 ---
 
 # 8. Success Criteria
 
-* Organizations can conduct secure assessments.
-* Candidates can complete tests without interruptions.
-* Recruiters can evaluate candidates efficiently.
-* Interviews can be conducted securely online.
-* Results are generated accurately and automatically.
-* Recruitment time is significantly reduced.
-* Platform supports large-scale hiring processes securely and reliably.
-
+* Students can complete exams online successfully.
+* Admin can manage tests efficiently.
+* Results are generated automatically.
+* System remains secure and scalable.
