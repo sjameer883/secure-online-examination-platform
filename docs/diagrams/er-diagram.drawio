@@ -1,1 +1,132 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="SOEP ER Diagram">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1"
+                  connect="1" arrows="1" fold="1" page="1" pageScale="1"
+                  pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
 
+        <!-- ROLES -->
+        <mxCell id="roles"
+                value="ROLES&#10;------------------&#10;PK role_id&#10;role_name"
+                style="rounded=0;whiteSpace=wrap;html=1;"
+                vertex="1" parent="1">
+          <mxGeometry x="50" y="50" width="180" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- USERS -->
+        <mxCell id="users"
+                value="USERS&#10;------------------&#10;PK user_id&#10;first_name&#10;last_name&#10;email&#10;password_hash&#10;role_id FK&#10;is_active"
+                style="rounded=0;whiteSpace=wrap;html=1;"
+                vertex="1" parent="1">
+          <mxGeometry x="320" y="30" width="220" height="220" as="geometry"/>
+        </mxCell>
+
+        <!-- EXAMS -->
+        <mxCell id="exams"
+                value="EXAMS&#10;------------------&#10;PK exam_id&#10;title&#10;duration_minutes&#10;passing_score&#10;created_by FK"
+                style="rounded=0;whiteSpace=wrap;html=1;"
+                vertex="1" parent="1">
+          <mxGeometry x="650" y="30" width="220" height="180" as="geometry"/>
+        </mxCell>
+
+        <!-- QUESTIONS -->
+        <mxCell id="questions"
+                value="QUESTIONS&#10;------------------&#10;PK question_id&#10;exam_id FK&#10;question_type&#10;difficulty_level&#10;marks&#10;negative_marks"
+                style="rounded=0;whiteSpace=wrap;html=1;"
+                vertex="1" parent="1">
+          <mxGeometry x="980" y="30" width="240" height="200" as="geometry"/>
+        </mxCell>
+
+        <!-- OPTIONS -->
+        <mxCell id="options"
+                value="OPTIONS&#10;------------------&#10;PK option_id&#10;question_id FK&#10;option_text&#10;is_correct"
+                style="rounded=0;whiteSpace=wrap;html=1;"
+                vertex="1" parent="1">
+          <mxGeometry x="1320" y="50" width="220" height="150" as="geometry"/>
+        </mxCell>
+
+        <!-- EXAM_ASSIGNMENTS -->
+        <mxCell id="assignments"
+                value="EXAM_ASSIGNMENTS&#10;------------------&#10;PK assignment_id&#10;exam_id FK&#10;candidate_id FK&#10;status"
+                style="rounded=0;whiteSpace=wrap;html=1;"
+                vertex="1" parent="1">
+          <mxGeometry x="650" y="350" width="260" height="180" as="geometry"/>
+        </mxCell>
+
+        <!-- CANDIDATE_ANSWERS -->
+        <mxCell id="answers"
+                value="CANDIDATE_ANSWERS&#10;------------------&#10;PK answer_id&#10;assignment_id FK&#10;question_id FK&#10;option_id FK"
+                style="rounded=0;whiteSpace=wrap;html=1;"
+                vertex="1" parent="1">
+          <mxGeometry x="980" y="350" width="260" height="180" as="geometry"/>
+        </mxCell>
+
+        <!-- RESULTS -->
+        <mxCell id="results"
+                value="RESULTS&#10;------------------&#10;PK result_id&#10;assignment_id FK&#10;score&#10;percentage&#10;status"
+                style="rounded=0;whiteSpace=wrap;html=1;"
+                vertex="1" parent="1">
+          <mxGeometry x="1320" y="350" width="220" height="170" as="geometry"/>
+        </mxCell>
+
+        <!-- AUDIT_LOGS -->
+        <mxCell id="audit"
+                value="AUDIT_LOGS&#10;------------------&#10;PK log_id&#10;user_id FK&#10;action&#10;entity_type"
+                style="rounded=0;whiteSpace=wrap;html=1;"
+                vertex="1" parent="1">
+          <mxGeometry x="320" y="380" width="220" height="170" as="geometry"/>
+        </mxCell>
+
+        <!-- Relationships -->
+
+        <mxCell id="r1" style="endArrow=block;" edge="1" parent="1"
+                source="roles" target="users">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r2" style="endArrow=block;" edge="1" parent="1"
+                source="users" target="exams">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r3" style="endArrow=block;" edge="1" parent="1"
+                source="exams" target="questions">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r4" style="endArrow=block;" edge="1" parent="1"
+                source="questions" target="options">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r5" style="endArrow=block;" edge="1" parent="1"
+                source="users" target="assignments">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r6" style="endArrow=block;" edge="1" parent="1"
+                source="exams" target="assignments">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r7" style="endArrow=block;" edge="1" parent="1"
+                source="assignments" target="answers">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r8" style="endArrow=block;" edge="1" parent="1"
+                source="assignments" target="results">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r9" style="endArrow=block;" edge="1" parent="1"
+                source="users" target="audit">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
