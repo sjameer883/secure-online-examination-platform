@@ -8,11 +8,11 @@ The Secure Online Examination Platform (SOEP) follows a three-tier architecture 
 2. Business Layer (Spring Boot Backend)
 3. Data Layer (PostgreSQL Database)
 
-This architecture promotes scalability, maintainability, security, and clear separation of responsibilities. Each layer operates independently and communicates through well-defined interfaces, making the system easier to develop, test, and maintain.
+This architecture promotes scalability, maintainability, security, and separation of concerns. Each layer is independently maintainable and communicates through secure REST APIs.
 
 ---
 
-## 2. High-Level Architecture
+# 2. High-Level Architecture
 
 ```text
 +-------------------+
@@ -33,84 +33,98 @@ This architecture promotes scalability, maintainability, security, and clear sep
 +-------------------+
 ```
 
-### Frontend Layer (React + TypeScript)
+## Frontend Layer (React + TypeScript)
 
-The frontend provides the user interface for all platform users.
+The frontend is responsible for delivering a responsive and user-friendly interface.
 
-Responsibilities:
+### Responsibilities
 
-* User Authentication
-* Exam Management Screens
-* Candidate Dashboard
-* Recruiter Dashboard
-* Admin Dashboard
+* Authentication Screens
+* Dashboard Views
+* Exam Management
+* Candidate Management
 * Result Visualization
 * API Communication
+* Form Validation
 
-#### Candidate Dashboard
+### Candidate Dashboard
 
 Allows candidates to:
 
-* View assigned exams
-* Start examinations
-* Save progress
-* Submit exams
-* View results
+* Login
+* View Assigned Exams
+* Start Examinations
+* Save Progress
+* Review Answers
+* Submit Exams
+* View Results
 
-#### Recruiter Dashboard
+### Recruiter Dashboard
 
 Allows recruiters to:
 
-* Create exams
-* Manage questions
-* Assign exams
-* Monitor candidate performance
-* View results
+* Create Exams
+* Manage Question Banks
+* Assign Exams
+* View Candidate Results
+* Track Exam Performance
 
-#### Admin Dashboard
+### Admin Dashboard
 
 Allows administrators to:
 
-* Manage recruiters
-* Manage candidates
-* Monitor platform activity
-* View audit logs
+* Manage Recruiters
+* Manage Candidates
+* Manage Roles
+* Monitor Platform Activity
+* View Audit Logs
 
 ---
 
-### Backend Layer (Spring Boot)
+## Backend Layer (Spring Boot)
 
-The backend contains all business logic and application rules.
+The backend contains all business logic and security mechanisms.
 
-Responsibilities:
+### Responsibilities
 
 * Authentication & Authorization
-* Exam Processing
+* Exam Management
 * Candidate Management
 * Recruiter Management
-* Result Generation
+* Result Processing
 * Audit Logging
-* REST API Exposure
+* REST API Services
+
+### Major Modules
+
+* Authentication Module
+* User Management Module
+* Exam Management Module
+* Question Bank Module
+* Assignment Module
+* Result Module
+* Audit Module
 
 ---
 
-### Database Layer (PostgreSQL)
+## Database Layer (PostgreSQL)
 
-The database stores all persistent application data.
+The database provides persistent storage for application data.
 
-Responsibilities:
+### Responsibilities
 
-* User Data
-* Role Data
+* User Storage
+* Role Storage
 * Examination Data
-* Question Data
 * Candidate Responses
-* Results
-* Audit Logs
+* Result Storage
+* Audit Log Storage
 
 ---
 
-## 3. Backend Architecture
+# 3. Backend Architecture
+
+## Backend Layers
 
 ### Controller Layer
 
@@ -118,28 +132,28 @@ Handles HTTP requests and responses.
 
 Responsibilities:
 
-* Receive API requests
-* Validate request payloads
-* Invoke service methods
-* Return API responses
+* Accept Client Requests
+* Validate Input
+* Return Responses
+* Invoke Service Layer
 
 Examples:
 
 * AuthController
+* UserController
 * ExamController
-* CandidateController
-* RecruiterController
+* ResultController
 
 ---
 
 ### Service Layer
 
-Contains business logic and validation.
+Contains business logic and application rules.
 
 Responsibilities:
 
-* User Authentication
-* Exam Assignment
+* Authentication Logic
+* Exam Assignment Logic
 * Result Calculation
 * Candidate Evaluation
 * Authorization Checks
@@ -147,8 +161,8 @@ Responsibilities:
 Examples:
 
 * AuthService
-* ExamService
 * UserService
+* ExamService
 * ResultService
 
 ---
@@ -174,36 +188,41 @@ Examples:
 
 ### Database Layer
 
-Stores application data in PostgreSQL.
+Stores application data inside PostgreSQL.
 
 Responsibilities:
 
 * Data Persistence
 * Relationship Management
-* Transaction Support
+* Transaction Management
 * Query Optimization
 
 ---
 
-## 4. Package Structure
+# 4. Package Structure
 
 ```text
 com.examportal
-
+│
 ├── controller
 ├── service
 ├── repository
 ├── entity
 ├── dto
+├── mapper
 ├── security
 ├── config
 ├── exception
 ├── util
+├── validation
+├── audit
+│
+└── SOEPApplication.java
 ```
 
 ### controller
 
-Contains REST API endpoints that expose application functionality.
+Contains REST API endpoints.
 
 Examples:
 
@@ -215,11 +234,12 @@ Examples:
 
 ### service
 
-Contains business logic and validation rules.
+Contains business logic and workflow processing.
 
 Examples:
 
 * AuthService
+* UserService
 * ExamService
 * ResultService
 
@@ -227,13 +247,13 @@ Examples:
 
 ### repository
 
-Contains Spring Data JPA repositories used for database access.
+Contains Spring Data JPA repositories.
 
 Examples:
 
 * UserRepository
 * ExamRepository
-* QuestionRepository
+* ResultRepository
 
 ---
 
@@ -253,66 +273,130 @@ Examples:
 
 ### dto
 
-Contains Data Transfer Objects used for API communication.
+Contains Data Transfer Objects used between frontend and backend.
 
 Examples:
 
 * LoginRequest
 * LoginResponse
 * CreateExamRequest
+* ExamResponse
+
+---
+
+### mapper
+
+Responsible for converting Entities and DTOs.
+
+Benefits:
+
+* Cleaner Service Layer
+* Reduced Boilerplate
+* Future MapStruct Integration
+
+Examples:
+
+* UserMapper
+* ExamMapper
+* ResultMapper
 
 ---
 
 ### security
 
-Contains security-related components.
+Contains authentication and authorization components.
 
 Examples:
 
-* JwtService
-* JwtFilter
 * SecurityConfig
+* JwtService
+* JwtAuthenticationFilter
 * CustomUserDetailsService
+
+Responsibilities:
+
+* Token Generation
+* Token Validation
+* User Authentication
+* Access Control
 
 ---
 
 ### config
 
-Contains application configuration classes.
+Contains application configurations.
 
 Examples:
 
-* OpenApiConfig
 * CorsConfig
-* AppConfig
+* OpenApiConfig
+* ApplicationConfig
 
 ---
 
 ### exception
 
-Contains custom exception classes and global exception handlers.
+Contains custom exceptions and global handlers.
 
 Examples:
 
 * ResourceNotFoundException
 * UnauthorizedException
+* ValidationException
 * GlobalExceptionHandler
 
 ---
 
 ### util
 
-Contains reusable helper classes and utility methods.
+Contains reusable helper classes.
 
 Examples:
 
 * DateUtil
-* ValidationUtil
 * Constants
+* CommonUtils
 
 ---
 
-## 5. Authentication Flow
+### validation
+
+Contains custom validation logic.
+
+Examples:
+
+* PasswordValidator
+* ExamValidator
+* UserValidator
+
+Responsibilities:
+
+* Request Validation
+* Business Rule Validation
+* Custom Validation Annotations
+
+---
+
+### audit
+
+Contains audit logging functionality.
+
+Examples:
+
+* AuditService
+* AuditEvent
+* AuditRepository
+
+Responsibilities:
+
+* Login Tracking
+* Security Event Logging
+* Administrative Action Tracking
+* Examination Activity Logging
+
+---
+
+# 5. Authentication Flow
 
 ```text
 User Login
@@ -339,9 +423,11 @@ JWT Filter Validates Token
 Access Granted
 ```
 
+## Authentication Process
+
 ### Step 1: User Login
 
-The user submits email and password.
+The user submits email and password credentials.
 
 ### Step 2: Spring Security Processing
 
@@ -349,11 +435,14 @@ Spring Security intercepts the request and validates credentials.
 
 ### Step 3: User Authentication
 
-The system verifies user identity using stored credentials.
+Credentials are verified against stored user records.
 
 ### Step 4: JWT Generation
 
-A signed JWT Access Token and Refresh Token are generated.
+The system generates:
+
+* Access Token
+* Refresh Token
 
 ### Step 5: Token Response
 
@@ -361,19 +450,23 @@ Tokens are returned to the frontend.
 
 ### Step 6: Authenticated Requests
 
-The frontend includes the JWT token in the Authorization header.
+The frontend includes the JWT access token in API requests.
 
 ### Step 7: JWT Validation
 
-The JWT filter validates token authenticity and expiration.
+The JWT filter validates:
+
+* Signature
+* Expiration
+* User Information
 
 ### Step 8: Access Granted
 
-Authorized users gain access to protected resources based on assigned roles.
+Role-based permissions determine access to resources.
 
 ---
 
-## 6. Deployment Architecture
+# 6. Deployment Architecture
 
 ```text
 React Frontend
@@ -392,108 +485,132 @@ PostgreSQL Database
 Neon PostgreSQL
 ```
 
-### Frontend Hosting
+## Frontend Deployment
 
-Vercel is used for:
+### Vercel
 
-* Fast deployments
+Benefits:
+
+* Fast Deployment
 * Global CDN
-* Automatic builds
-
-### Backend Hosting
-
-Render is used for:
-
-* Spring Boot deployment
-* HTTPS support
-* Continuous deployment
-
-### Database Hosting
-
-Neon PostgreSQL is used for:
-
-* Managed PostgreSQL
-* Automatic backups
-* Scalability
-* Cloud-native architecture
+* Automatic Builds
+* SSL Support
 
 ---
 
-## 7. Security Architecture
+## Backend Deployment
 
-### BCrypt Password Encryption
+### Render
 
-Passwords are never stored in plain text. BCrypt hashing is used before storing passwords in the database.
+Benefits:
 
-### JWT Authentication
+* Easy Spring Boot Deployment
+* HTTPS Support
+* Continuous Deployment
+* Environment Variable Management
+
+---
+
+## Database Deployment
+
+### Neon PostgreSQL
+
+Benefits:
+
+* Managed PostgreSQL
+* Automatic Backups
+* Scalability
+* High Availability
+
+---
+
+# 7. Security Architecture
+
+## BCrypt Password Encryption
+
+Passwords are encrypted using BCrypt before storage. Plain-text passwords are never stored in the database.
+
+---
+
+## JWT Authentication
 
 JWT tokens provide stateless authentication between frontend and backend systems.
 
-### Role-Based Access Control (RBAC)
+---
 
-Access permissions are enforced using roles:
+## Role-Based Access Control (RBAC)
+
+Supported Roles:
 
 * ADMIN
 * RECRUITER
 * CANDIDATE
 
-Each role can access only authorized resources.
+Each role has access only to authorized resources.
 
-### Refresh Tokens
+---
 
-Refresh tokens allow secure token renewal without requiring users to log in repeatedly.
+## Refresh Tokens
 
-### Audit Logging
+Refresh tokens enable secure generation of new access tokens without requiring repeated logins.
 
-Critical actions are recorded for monitoring and security purposes.
+---
+
+## Audit Logging
+
+The platform records critical system events.
 
 Examples:
 
 * Login Attempts
-* User Creation
+* User Registration
+* User Updates
 * Exam Creation
 * Exam Assignment
-* Result Publication
+* Exam Submission
+* Result Generation
 
 ---
 
-## Architecture Decisions
+# Architecture Decisions
 
-### Why Three-Tier Architecture?
+## Why Three-Tier Architecture?
 
-* Clear separation of concerns
-* Easier maintenance
-* Better scalability
-* Independent deployment capabilities
+* Clear Separation of Concerns
+* Easier Maintenance
+* Better Scalability
+* Independent Development
 
-### Why React?
+## Why React + TypeScript?
 
-* Component-based architecture
-* Fast UI rendering
-* Strong TypeScript support
+* Component-Based Design
+* Strong Typing
+* Better Maintainability
+* Modern Frontend Ecosystem
 
-### Why Spring Boot?
+## Why Spring Boot?
 
-* Enterprise-grade framework
-* Robust security support
-* Excellent integration with PostgreSQL
+* Enterprise-Level Framework
+* Strong Security Support
+* Rapid Development
+* Large Community Support
 
-### Why PostgreSQL?
+## Why PostgreSQL?
 
-* ACID compliance
-* Reliability
-* Excellent performance
-* Advanced querying capabilities
+* ACID Compliance
+* High Reliability
+* Advanced Query Support
+* Excellent Performance
 
-### Why JWT Authentication?
+## Why JWT?
 
-* Stateless architecture
-* Better scalability
-* Secure API communication
+* Stateless Authentication
+* Scalable Architecture
+* Secure API Communication
 
 ---
 
-## Deliverable
+# Deliverable
 
 ```bash
 git commit -m "Add system architecture documentation"
