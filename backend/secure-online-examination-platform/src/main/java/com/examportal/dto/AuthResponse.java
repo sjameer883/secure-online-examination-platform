@@ -6,9 +6,25 @@ public class AuthResponse {
     private String refreshToken;
     private String message;
 
-    public AuthResponse() {}
+    // Default constructor
+    public AuthResponse() {
+    }
 
+    // Constructor for registration response
     public AuthResponse(String message) {
+        this.message = message;
+    }
+
+    // Constructor for login response
+    public AuthResponse(String accessToken, String refreshToken) {
+        this.accessToken = accessToken;
+        this.refreshToken = refreshToken;
+    }
+
+    // Constructor for all fields (optional)
+    public AuthResponse(String accessToken, String refreshToken, String message) {
+        this.accessToken = accessToken;
+        this.refreshToken = refreshToken;
         this.message = message;
     }
 
